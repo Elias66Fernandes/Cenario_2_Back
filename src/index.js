@@ -1,4 +1,5 @@
 //importações necessárias para o projeto
+require('dotenv').config();
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");
 const bodyParser = require("body-parser");
