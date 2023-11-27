@@ -14,11 +14,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-app.post("/item", async (req, res) => {
-  const dados = req.body;
-  await prisma.item.create({
+app.post("/user", async (req, res) => {
+  const data = req.body;
+  await prisma.user.create({
     data: {
-      nome: dados.nome,
+      name: data.name,
     },
   });
   return res.sendStatus(201);
