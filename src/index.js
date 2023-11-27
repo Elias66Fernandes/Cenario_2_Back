@@ -37,10 +37,10 @@ app.get("/users", async (req, res) => {
 
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
-  const { nome } = req.params;
+  const { name } = req.params;
   try {
     const user = await prisma.user.findUnique({
-      where: { nome },
+      where: { name },
     });
     if (user) {
       res.json(user);
