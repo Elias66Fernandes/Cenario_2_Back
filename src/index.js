@@ -28,7 +28,6 @@ app.post("/user", async (req, res) => {
 app.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
-    res.json(users);
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
     res.status(500).send("Erro interno do servidor");
@@ -37,20 +36,14 @@ app.get("/users", async (req, res) => {
 
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
-  const { nome } = req.params;
-  try {
-    const user = await prisma.user.findUnique({
-      where: { nome },
-    });
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).send("Usuário não encontrado");
-    }
-  } catch (error) {
-    console.error("Erro ao buscar usuário:", error);
-    res.status(500).send("Erro interno do servidor");
-  }
+  const nome = req.params.nome;
+  const user = await prisma.user.findMany({
+    where: {
+      nome: nome,
+    },
+  });
+  if (user.length > 0) return res.status(200).send(user);
+  return res.send("No user found");
 });
 
 // Inicie o servidor na porta especificada
