@@ -25,7 +25,7 @@ app.post("/user", async (req, res) => {
 });
 
 // rota para listar todos os usuários
-app.get("/users", async (req, res) => {
+app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
   } catch (error) {
@@ -43,7 +43,7 @@ app.get("/user/:nome", async (req, res) => {
     },
   });
   if (user.length > 0) return res.status(200).send(user);
-  return res.send("No user found");
+  return res.send("Usuário não encontrado");
 });
 
 // Inicie o servidor na porta especificada
