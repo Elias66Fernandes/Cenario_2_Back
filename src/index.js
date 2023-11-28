@@ -18,7 +18,7 @@ app.post("/user", async (req, res) => {
   const data = req.body;
   await prisma.user.create({
     data: {
-      nome: data.name,
+      nome: data.nome,
     },
   });
   return res.sendStatus(201);
@@ -37,10 +37,10 @@ app.get("/users", async (req, res) => {
 
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
-  const { name } = req.params;
+  const { nome } = req.params;
   try {
     const user = await prisma.user.findUnique({
-      where: { name },
+      where: { nome },
     });
     if (user) {
       res.json(user);
