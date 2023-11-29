@@ -26,12 +26,9 @@ app.post("/item", async (req, res) => {
 
 // rota para listar todos os usuários
 app.get("/users", async (req, res) => {
-  try {
-    const users = await prisma.user.findMany();
-  } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    res.status(500).send("Erro interno do servidor");
-  }
+  const users = await prisma.user.findMany();
+  if (users.length > 0) return res.status(200).send(users);
+  return res.send("Usuários não encontrados");
 });
 
 // rota para buscar um usuário pelo nome
