@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run prisma:deploy && node src/index.js",
+    "start": "npx prisma migrate deploy && node src/index.js",
     "dev:migrate": "npx prisma migrate dev",
-    "prisma:deploy": "npx prisma migrate deploy"
+    "prisma:deploy": "npx prisma migrate deploy --production"
   },
   "keywords": [],
   "author": "",
