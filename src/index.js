@@ -15,32 +15,47 @@ app.use(cors());
 
 //rota para criar um item
 app.post("/item", async (req, res) => {
-  const dados = req.body;
-  await prisma.item.create({
-    data: {
-      nome: dados.nome,
-    },
-  });
-  return res.sendStatus(201);
+  try {
+    const dados = req.body;
+    await prisma.item.create({
+      data: {
+        nome: dados.nome,
+      },
+    });
+    return res.sendStatus(201);
+  } catch (error) {
+    console.error("Erro ao criar item:", error);
+    return res.status(500).send("Erro ao criar o item");
+  }
 });
 
 // rota para listar todos os usuários
 app.get("/user", async (req, res) => {
-  const users = await prisma.user.findMany();
-  if (users.length > 0) return res.status(200).send(users);
-  return res.send("Usuários não encontrados");
+  try {
+    const users = await prisma.user.findMany();
+    if (users.length > 0) return res.status(200).send(users);
+    return res.send("Usuários não encontrados");
+  } catch (error) {
+    console.error("Erro ao buscar usuários:", error);
+    return res.status(500).send("Erro ao buscar usuários");
+  }
 });
 
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
-  const nome = req.params.nome;
-  const user = await prisma.user.findMany({
-    where: {
-      nome: nome,
-    },
-  });
-  if (user.length > 0) return res.status(200).send(user);
-  return res.send("Usuário não encontrado");
+  try{
+    const nome = req.params.nome;
+    const user = await prisma.user.findMany({
+      where: {
+        nome: nome,
+      },
+    });
+    if (user.length > 0) return res.status(200).send(user);
+    return res.send("Usuário não encontrado");
+  }catch (error) {
+    console.error("Erro ao buscar usuários:", error);
+    return res.status(500).send("Erro ao buscar usuários");
+  }
 });
 
 // Inicie o servidor na porta especificada
