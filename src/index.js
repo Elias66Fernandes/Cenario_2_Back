@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-app.post("/public/user", async (req, res) => {
+app.post("/user", async (req, res) => {
   try {
     const itemData = req.body;
 
@@ -23,7 +23,7 @@ app.post("/public/user", async (req, res) => {
         nome: itemData.nome, 
       },
     });
-    res.json(novoItem);
+    res.send(novoItem);
   } catch (erro) {
     console.error("Erro ao criar item:", erro);
     res.status(500).send("Erro interno do servidor"); 
