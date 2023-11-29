@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-app.post("/user", async (req, res) => {
+app.post("/public/user", async (req, res) => {
   try {
     const itemData = req.body;
 
@@ -23,7 +23,6 @@ app.post("/user", async (req, res) => {
         nome: itemData.nome, 
       },
     });
-
     res.json(novoItem);
   } catch (erro) {
     console.error("Erro ao criar item:", erro);
@@ -57,6 +56,7 @@ app.get("/user/:nome", async (req, res) => {
     return res.send("Usuário não encontrado");
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
+    res.status(500).send("Erro interno do servidor");
   }
 }); */
 
