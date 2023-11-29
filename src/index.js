@@ -31,18 +31,6 @@ app.post("/item", async (req, res) => {
 
 
 // rota para listar todos os usuários
-app.get("/users", async (req, res) => {
-  try {
-    const users = await prisma.user.findMany();
-    res.json(users);
-  } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    res.status(500).send("Erro interno do servidor");
-  }
-});
-
-/*
-// rota para listar todos os usuários
 app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
@@ -52,7 +40,7 @@ app.get("/user", async (req, res) => {
     console.error("Erro ao buscar usuários:", error);
     return res.status(500).send("Erro ao buscar usuários");
   }
-});*/
+});
 
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
