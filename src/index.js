@@ -37,8 +37,8 @@ app.get("/user", async (req, res) => {
     if (users.length > 0) return res.status(200).send(users);
     return res.send("Usuários não encontrados");
   } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    return res.status(500).send("Erro ao buscar usuários");
+    console.error("Erro ao listar todos os usuários:", error);
+    return res.status(500).send("Erro ao listar todos os usuários");
   }
 });
 
@@ -54,8 +54,8 @@ app.get("/user/:nome", async (req, res) => {
     if (user.length > 0) return res.status(200).send(user);
     return res.send("Usuário não encontrado");
   }catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    return res.status(500).send("Erro ao buscar usuários");
+    console.error("Erro ao buscar um usuário pelo nome:", error);
+    return res.status(500).send("Erro ao buscar um usuário pelo nome");
   }
 });
 
