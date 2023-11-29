@@ -26,19 +26,18 @@ app.post("/user", async (req, res) => {
     res.send(novoItem);
   } catch (erro) {
     console.error("Erro ao criar item:", erro);
-    res.send("Erro interno do servidor"); 
   }
 });
 
 
 // rota para listar todos os usuários
-app.get("/user", async (res) => {
+app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
     res.send(users);
+    if (users.length > 0) return res.send(users);
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
-    res.status(500).send("Erro interno do servidor");
   }
 });
 
@@ -51,11 +50,10 @@ app.get("/user/:nome", async (req, res) => {
         nome: nome,
       },
     });
-    if (user.length > 0) return res.status(200).send(user);
+    if (user.length > 0) return res.send(user);
     return res.send("Usuário não encontrado");
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
-    res.send("Erro interno do servidor");
   }
 });
 
