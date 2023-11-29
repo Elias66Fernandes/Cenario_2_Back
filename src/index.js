@@ -25,25 +25,23 @@ app.post("/item", async (req, res) => {
     return res.sendStatus(201);
   } catch (error) {
     console.error("Erro ao criar item:", error);
-    return res.status(500).send("Erro ao criar o item");
   }
 });
 
 
 // rota para listar todos os usuários
-app.get("/user", async (res) => {
+app.get("/public.user", async (res) => {
   try {
     const users = await prisma.user.findMany();
     if (users.length > 0) return res.status(200).send(users);
     return res.send("Usuários não encontrados");
   } catch (error) {
     console.error("Erro ao listar todos os usuários:", error);
-    return res.status(500).send("Erro ao listar todos os usuários");
   }
 });
 
 // rota para buscar um usuário pelo nome
-app.get("/user/:nome", async (req, res) => {
+app.get("/public.user/:nome", async (req, res) => {
   try{
     const nome = req.params.nome;
     const user = await prisma.user.findMany({
@@ -55,7 +53,6 @@ app.get("/user/:nome", async (req, res) => {
     return res.send("Usuário não encontrado");
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
-    return res.status(500).send("Erro ao buscar um usuário pelo nome");
   }
 });
 
