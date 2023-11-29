@@ -31,7 +31,7 @@ app.post("/item", async (req, res) => {
 
 
 // rota para listar todos os usuários
-app.get("/user", async (req, res) => {
+app.get("/user", async (res) => {
   try {
     const users = await prisma.user.findMany();
     if (users.length > 0) return res.status(200).send(users);
