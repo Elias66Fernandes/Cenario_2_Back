@@ -35,11 +35,10 @@ app.post("/user", async (req, res) => {
 app.get("/user", async (res) => {
   try {
     const users = await prisma.user.findMany();
-    if (users.length > 0) return res.status(200).send(users);
-    return res.send("Usuários não encontrados");
+    res.send(users);
   } catch (error) {
-    console.error("Erro ao listar todos os usuários:", error);
-    res.send("Erro interno do servidor");
+    console.error("Erro ao buscar usuários:", error);
+    res.status(500).send("Erro interno do servidor");
   }
 });
 
