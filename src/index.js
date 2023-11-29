@@ -14,18 +14,18 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-app.post("/user", async (req, res) => {
-  const data = req.body;
-  await prisma.user.create({
+app.post("/item", async (req, res) => {
+  const dados = req.body;
+  await prisma.item.create({
     data: {
-      nome: data.nome,
+      nome: dados.nome,
     },
   });
   return res.sendStatus(201);
 });
 
 // rota para listar todos os usuários
-app.get("/user", async (req, res) => {
+app.get("/users", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
   } catch (error) {
