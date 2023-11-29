@@ -30,7 +30,7 @@ app.post("/user", async (req, res) => {
   }
 });
 
-/*
+
 // rota para listar todos os usuários
 app.get("/user", async (res) => {
   try {
@@ -58,7 +58,7 @@ app.get("/user/:nome", async (req, res) => {
     console.error("Erro ao buscar um usuário pelo nome:", error);
     res.status(500).send("Erro interno do servidor");
   }
-}); */
+});
 
 // Inicie o servidor na porta especificada
 app.listen(port, () => {
