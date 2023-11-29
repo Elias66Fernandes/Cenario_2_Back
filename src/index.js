@@ -14,7 +14,26 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
+
 app.post("/item", async (req, res) => {
+  try {
+    const itemData = req.body;
+
+    const novoItem = await prisma.item.create({
+      data: {
+        nome: itemData.nome, 
+      },
+    });
+
+    res.status(201).json(novoItem);
+  } catch (erro) {
+    console.error("Erro ao criar item:", erro);
+    res.status(500).send("Erro interno do servidor"); 
+  }
+});
+
+
+/*app.post("/item", async (req, res) => {
   try {
     const dados = req.body;
     await prisma.item.create({
@@ -26,11 +45,11 @@ app.post("/item", async (req, res) => {
   } catch (error) {
     console.error("Erro ao criar item:", error);
   }
-});
+});*/
 
 
 // rota para listar todos os usuários
-app.get("/public.user", async (res) => {
+app.get("/user", async (res) => {
   try {
     const users = await prisma.user.findMany();
     if (users.length > 0) return res.status(200).send(users);
@@ -42,7 +61,7 @@ app.get("/public.user", async (res) => {
 });
 
 // rota para buscar um usuário pelo nome
-app.get("/public.user/:nome", async (req, res) => {
+app.get("/user/:nome", async (req, res) => {
   try{
     const nome = req.params.nome;
     const user = await prisma.user.findMany({
