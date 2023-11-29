@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //rota para criar um item
-
 app.post("/user", async (req, res) => {
   try {
     const itemData = req.body;
@@ -25,29 +24,14 @@ app.post("/user", async (req, res) => {
       },
     });
 
-    res.status(201).json(novoItem);
+    res.json(novoItem);
   } catch (erro) {
     console.error("Erro ao criar item:", erro);
     res.status(500).send("Erro interno do servidor"); 
   }
 });
 
-
-/*app.post("/item", async (req, res) => {
-  try {
-    const dados = req.body;
-    await prisma.item.create({
-      data: {
-        nome: dados.nome,
-      },
-    });
-    return res.sendStatus(201);
-  } catch (error) {
-    console.error("Erro ao criar item:", error);
-  }
-});
-
-
+/*
 // rota para listar todos os usuários
 app.get("/user", async (res) => {
   try {
