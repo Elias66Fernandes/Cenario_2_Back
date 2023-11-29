@@ -26,7 +26,7 @@ app.post("/user", async (req, res) => {
     res.send(novoItem);
   } catch (erro) {
     console.error("Erro ao criar item:", erro);
-    res.status(500).send("Erro interno do servidor"); 
+    res.send("Erro interno do servidor"); 
   }
 });
 
@@ -39,7 +39,7 @@ app.get("/user", async (res) => {
     return res.send("Usuários não encontrados");
   } catch (error) {
     console.error("Erro ao listar todos os usuários:", error);
-    res.status(500).send("Erro interno do servidor");
+    res.send("Erro interno do servidor");
   }
 });
 
@@ -56,7 +56,7 @@ app.get("/user/:nome", async (req, res) => {
     return res.send("Usuário não encontrado");
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
-    res.status(500).send("Erro interno do servidor");
+    res.send("Erro interno do servidor");
   }
 });
 
