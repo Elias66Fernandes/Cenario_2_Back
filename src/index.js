@@ -37,6 +37,7 @@ app.get("/public.user", async (res) => {
     return res.send("Usuários não encontrados");
   } catch (error) {
     console.error("Erro ao listar todos os usuários:", error);
+    res.status(500).send("Erro interno do servidor");
   }
 });
 
