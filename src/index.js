@@ -45,7 +45,7 @@ app.post("/item", async (req, res) => {
   } catch (error) {
     console.error("Erro ao criar item:", error);
   }
-});*/
+});
 
 
 // rota para listar todos os usuários
@@ -74,7 +74,7 @@ app.get("/user/:nome", async (req, res) => {
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
   }
-});
+}); */
 
 // Inicie o servidor na porta especificada
 app.listen(port, () => {
