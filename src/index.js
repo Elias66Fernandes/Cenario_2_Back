@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-//rota para criar um usuário
+//rota para criar os usuário
 app.post("/user", async (req, res) => {
   try {
     const itemData = req.body;
