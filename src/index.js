@@ -30,7 +30,7 @@ app.post("/user", async (req, res) => {
 });
 
 
-// rota para listar todos os usuários
+// rota para listar os usuários
 app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
