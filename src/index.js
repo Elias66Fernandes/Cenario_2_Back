@@ -41,7 +41,7 @@ app.get("/user", async (req, res) => {
   }
 });
 
-/*
+
 // rota para buscar um usuário pelo nome
 app.get("/user/:nome", async (req, res) => {
   try{
@@ -56,7 +56,7 @@ app.get("/user/:nome", async (req, res) => {
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
   }
-}); */
+});
 
 // Inicie o servidor na porta especificada
 app.listen(port, () => {
