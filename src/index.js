@@ -34,8 +34,12 @@ app.post("/user", async (req, res) => {
 app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
-    res.send(users);
-    if (users.length > 0) return res.send(users);
+    if (users.length > 0) {
+      res.send(users);
+    } else {
+      // Caso em que não há usuários
+      res.send("Nenhum usuário encontrado");
+    }
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
   }
@@ -51,8 +55,11 @@ app.get("/user/:nome", async (req, res) => {
         nome: nome,
       },
     });
-    if (user.length > 0) return res.send(user);
-    return res.send("Usuário não encontrado");
+    if (user.length > 0){
+      res.send(user);
+    }else{
+      res.send("Usuário não encontrado");
+    }
   }catch (error) {
     console.error("Erro ao buscar um usuário pelo nome:", error);
   }
