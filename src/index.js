@@ -34,8 +34,8 @@ app.post("/user", async (req, res) => {
 app.get("/user", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
-    //res.send(users);
-    if (users.length > 0) return res.send(users);
+    res.send(users);
+    //if (users.length > 0) return res.send(users);
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
   }
