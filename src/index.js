@@ -29,7 +29,7 @@ app.post("/user", async (req, res) => {
   }
 });
 
-/*
+
 // rota para listar todos os usuários
 app.get("/user", async (req, res) => {
   try {
@@ -39,7 +39,7 @@ app.get("/user", async (req, res) => {
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
   }
-}); */
+});
 
 /*
 // rota para buscar um usuário pelo nome
